@@ -1,28 +1,29 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <ComponentVueParent/>
+    <!-- <ComponentComputedVue/> -->
+    <!-- <ComponentWatchVue/> -->
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+// import ComponentWatchVue from './components/ComponentWatch.vue'
+// import ComponentComputedVue from './components/ComponentComputed.vue'
+
+import ComponentVueParent from './components/ComponentParent.vue'
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    ComponentVueParent,
+    // ComponentComputedVue
+    // ComponentWatchVue
   }
 }
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+  #app{
+    margin: 0 auto;
+  }
 </style>
