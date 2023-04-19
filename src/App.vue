@@ -1,8 +1,8 @@
 <template>
   <div id="app">
     <ComponentVueParent/>
-    <!-- <ComponentComputedVue/> -->
-    <!-- <ComponentWatchVue/> -->
+    <!-- <ComponentComputedVue/>
+    <ComponentWatchVue/> -->
   </div>
 </template>
 
@@ -16,7 +16,7 @@ export default {
   name: 'App',
   components: {
     ComponentVueParent,
-    // ComponentComputedVue
+    // ComponentComputedVue,
     // ComponentWatchVue
   }
 }
@@ -25,5 +25,7 @@ export default {
 <style>
   #app{
     margin: 0 auto;
+    display: flex;
+    justify-content: center;
   }
 </style>

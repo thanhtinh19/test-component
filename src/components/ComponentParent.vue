@@ -1,10 +1,10 @@
 <template>
   <div class="parent-component">
     <div class="form">
-        <form>
+        <form v-on:submit.prevent = "send()">
           <h1>{{content}}</h1>
           <input type="text" v-model="message"> 
-          <button type="submit" @click="send()">Send</button>
+          <button type="submit">Send</button>
           <p v-if="messageDeleted">Bạn đã xóa {{messageDeleted}}</p>
     </form>
     </div>
@@ -25,6 +25,7 @@ export default {
         messages: [],
         messageDeleted: '',
         gender: 1,
+        messageDeletedInterval:null
       }
     },
     created(){
@@ -50,13 +51,20 @@ export default {
       },
       listenDelete(message){
         this.messageDeleted = message
-        var v = this
-        const messageDeletedInterval = setInterval(() => {
-          v.messageDeleted = ''
-        }, 2000) 
-        clearInterval(messageDeletedInterval)
       },
     },
+    watch:{
+      messageDeleted(newVal){
+        console.log(newVal)
+         this.messageDeletedInterval = setTimeout(() => {
+          this.messageDeleted = ''
+        }, 5000)
+        
+      }
+    },
+    beforeDestroy(){
+      clearTimeout(this.messageDeletedInterval)
+    }
 }
 </script>
 
