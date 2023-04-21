@@ -1,11 +1,13 @@
 <template>
-  <ul>
+  <div class="list">
     <h1>Childrent Component</h1>
-    <div class="list" v-for="(mess, index) in message" :key="mess">
+    <ul>
+      <div class="list-item" v-for="(mess, index) in message" :key="mess">
       <li >{{mess}}</li>
       <a href="" @click="deleteMessage(index)">Delete</a>
     </div>
-  </ul>
+    </ul>
+  </div>
 </template>
 
 <script>
@@ -30,12 +32,20 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-    ul{
+    .list{
         padding: 0;
         margin: 0;
         background-color: rgba(169, 169, 169, 0.37);
         padding: 20px;
-    }
+        
+      }
+      ul{
+        margin: 0;
+        padding: 0;
+        position: sticky;
+        height: 40vh;
+        overflow: auto;
+      }
     li{
         list-style: none;
     }
@@ -50,7 +60,7 @@ export default {
     a:hover{
       background: rgb(226, 5, 5);
     }
-    .list{
+    .list-item{
       display: flex;
       justify-content: space-between;
       background-color: white;
@@ -58,6 +68,7 @@ export default {
       align-items: center;
       margin-bottom: 10px;
       font-size: 15px;
+
     }
 
 </style>

@@ -5,7 +5,7 @@
           <h1>{{content}}</h1>
           <input type="text" v-model="message"> 
           <button type="submit">Send</button>
-          <p v-if="messageDeleted">Bạn đã xóa {{messageDeleted}}</p>
+          <p v-if="isDeleted">Bạn đã xóa {{messageDeleted}}</p>
     </form>
     </div>
   <ComponentChildVue v-bind:message="messages" v-on:notify-delete-message="listenDelete"/>
@@ -25,7 +25,7 @@ export default {
         messages: [],
         messageDeleted: '',
         gender: 1,
-        messageDeletedInterval:null
+        isDeleted:false,
       }
     },
     created(){
@@ -51,20 +51,22 @@ export default {
       },
       listenDelete(message){
         this.messageDeleted = message
+        this.isDeleted = true  
       },
     },
     watch:{
-      messageDeleted(newVal){
-        console.log(newVal)
-         this.messageDeletedInterval = setTimeout(() => {
-          this.messageDeleted = ''
-        }, 5000)
-        
+      isDeleted(newVal){
+        if(newVal){
+          setTimeout(()=>{
+            this.isDeleted = false
+          }, 5000)
+        }
+        if(!newVal){
+          clearInterval(this.isDeleted)
+        }
       }
     },
-    beforeDestroy(){
-      clearTimeout(this.messageDeletedInterval)
-    }
+
 }
 </script>
 
